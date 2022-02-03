@@ -3,7 +3,7 @@
 #include "vector.h"
 #include "property.h"
 #include<array>
-#include <memory>
+#include <vector>
 
 namespace influenceMapping {
 	enum CharacterDirection :int {

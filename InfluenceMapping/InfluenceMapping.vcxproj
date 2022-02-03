@@ -154,6 +154,7 @@
     <ClInclude Include="character.h" />
     <ClInclude Include="configuration.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="property.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>
@@ -161,6 +162,7 @@
     <ClCompile Include="character.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="player.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
