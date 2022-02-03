@@ -13,7 +13,7 @@ namespace influenceMapping {
 		switch (direction)
 		{
 		case directionDownE:
-			if (tmp_coord.y >= window_square_w) return;
+			if (tmp_coord.y >= window_square_h - 1) return;
 			if (field[int(tmp_coord.y) + 1][int(tmp_coord.x)] == 1) return;
 			setNextCoord(Vec2(0.0, 1.0));
 			break;
@@ -23,7 +23,7 @@ namespace influenceMapping {
 			setNextCoord(Vec2(0.0, -1.0));
 			break;
 		case directionRightE:
-			if (tmp_coord.x >= window_square_w) return;
+			if (tmp_coord.x >= window_square_w - 1) return;
 			if (field[int(tmp_coord.y)][int(tmp_coord.x) + 1] == 1) return;
 			setNextCoord(Vec2(1.0, 0.0));
 			break;

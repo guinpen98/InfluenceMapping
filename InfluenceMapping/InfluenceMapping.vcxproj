@@ -153,16 +153,22 @@
   <ItemGroup>
     <ClInclude Include="character.h" />
     <ClInclude Include="configuration.h" />
+    <ClInclude Include="draw.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="property.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="character.cpp" />
+    <ClCompile Include="draw.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="InfluenceMapping.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

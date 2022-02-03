@@ -22,9 +22,9 @@ namespace influenceMapping {
 	class Character
 	{
 	private:
-		Vec2 current_coord = Vec2(0.0, 0.0);
-		Vec2 interim_coord = Vec2(0.0, 0.0);
-		Vec2 next_coord = Vec2(0.0, 0.0);
+		Vec2 current_coord = Vec2(1.0, 1.0);
+		Vec2 interim_coord = Vec2(1.0, 1.0);
+		Vec2 next_coord = Vec2(1.0, 1.0);
 		int walk_cnt = 0;
 		CharacterDirection direction = directionDownE;
 		std::array<int, num_c_chip_ALL> character_chip;
