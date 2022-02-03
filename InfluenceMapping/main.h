@@ -6,10 +6,11 @@
 #include"player.h"
 #include"draw.h"
 
+using namespace std;
 
 namespace influenceMapping {
 	bool update();
-	void readMapFile(std::vector<std::vector<int>>& field);
-	void main(Player player);
+	void readMapFile(vector<vector<int>>& field);
+	void main(Mapchip mc,Player player);
 }
 #endif // !INFLUENCE_MAPPING_MAIN_H

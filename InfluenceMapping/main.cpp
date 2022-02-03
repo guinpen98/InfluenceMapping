@@ -1,7 +1,5 @@
 #include "main.h"
 
-using namespace std;
-
 namespace influenceMapping {
     bool update() { return (DxLib::ScreenFlip() != -1 && DxLib::ClearDrawScreen() != -1 && DxLib::ProcessMessage() != -1); }
 
@@ -22,7 +20,7 @@ namespace influenceMapping {
         }
     }
 
-    void main(Player player) {
+    void main(Mapchip mc, Player player) {
         //地形の二次元配列
         vector<vector<int>> field(window_square_h, vector<int>(window_square_w));
         //地形ファイルの読み込み
@@ -39,22 +37,7 @@ namespace influenceMapping {
             }
             if (player.getState() == PlayerState::walkE) player.walk();
 
-            for (int y = 0; y < window_square_h; y++)
-                for (int x = 0; x < window_square_w; x++) {
-                    unsigned int cr = GetColor(0, 0, 0);
-                    switch (field[y][x])
-                    {
-                    case 1:
-                        cr = GetColor(0, 100, 25);
-                        break;
-                    case 0:
-                        cr = GetColor(0, 150, 50);
-                        break;
-                    default:
-                        break;
-                    }
-                    DrawBox(x* square_size, y* square_size, (x + 1)* square_size, (y + 1)* square_size, cr, TRUE);
-                }
+            drawMap(field, mc);
             drawPlayer(player);
         }
     }

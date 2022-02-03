@@ -1,17 +1,17 @@
 #include "draw.h"
 
-namespace influenceMapping {/*
-    void drawMap(Vec2 camera_coord, std::vector<std::vector<int>>& field, life::Mapchip mc) {
-        std::array<int, life::num_m_chip_ALL> map_chip = mc.getMapchip();
-        for (int y = int(camera_coord.y); y < int(camera_coord.y) + 1 + window_square_h; y++) {
-            for (int x = int(camera_coord.x); x < int(camera_coord.x) + 1 + window_square_w; x++) {
+namespace influenceMapping {
+    void drawMap(std::vector<std::vector<int>>& field, Mapchip mc) {
+        std::array<int, num_m_chip_ALL> map_chip = mc.getMapchip();
+        for (int y = 0; y < window_square_h; y++) {
+            for (int x = 0; x < window_square_w; x++) {
                 unsigned int cr = GetColor(0, 0, 0);
-                DrawExtendGraph(int((x - camera_coord.x) * square_size), int((y - camera_coord.y) * square_size), int((x - camera_coord.x + 1) * square_size), int((y - camera_coord.y + 1) * square_size), map_chip[33], TRUE);
+                DrawExtendGraph(x * square_size,y * square_size,(x + 1) * square_size,(y + 1) * square_size, map_chip[33], TRUE);
                 switch (field[y][x])
                 {
                 case 1:
                     cr = GetColor(255, 255, 255);
-                    DrawExtendGraph(int((x - camera_coord.x) * square_size), int((y - camera_coord.y) * square_size), int((x - camera_coord.x + 1) * square_size), int((y - camera_coord.y + 1) * square_size), map_chip[81], TRUE);
+                    DrawExtendGraph(x  * square_size, y * square_size, (x + 1) * square_size, (y + 1) * square_size, map_chip[81], TRUE);
                     break;
                 case 0:
                     cr = GetColor(0, 0, 0);
@@ -21,7 +21,7 @@ namespace influenceMapping {/*
                 }
             }
         }
-    }*/
+    }
     void drawPlayer(Player player) {
         Vec2 pc_coord = player.getInterimCoord();
         std::array<int, num_c_chip_ALL> player_chip = player.getCharacterchip();
