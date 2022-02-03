@@ -22,6 +22,12 @@ namespace influenceMapping {
             }
         }
     }
+    void drawInfluenceRate(std::vector<std::vector<Node>>& node) {
+        for (int y = 0; y < window_square_h; y++)
+            for (int x = 0; x < window_square_w; x++) {
+                DrawBox(x * square_size, y * square_size, (x + 1) * square_size, (y + 1) * square_size, GetColor(255 * node[y][x].getDistance(), 0, 0), FALSE);
+            }
+    }
     void drawPlayer(Player player) {
         Vec2 pc_coord = player.getInterimCoord();
         std::array<int, num_c_chip_ALL> player_chip = player.getCharacterchip();

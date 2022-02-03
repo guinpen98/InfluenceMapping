@@ -37,7 +37,12 @@ namespace influenceMapping {
             }
             if (player.getState() == PlayerState::walkE) player.walk();
 
+            std::vector<std::vector<Node>> node(window_square_h, vector<Node>(window_square_w));
+            Vec2 p_coord = player.getNextCoord();
+            dijkstra(field, node, int(p_coord.x), int(p_coord.y));
+
             drawMap(field, mc);
+            drawInfluenceRate(node);
             drawPlayer(player);
         }
     }

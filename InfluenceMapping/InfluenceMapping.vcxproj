@@ -156,6 +156,7 @@
     <ClInclude Include="draw.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="mapchip.h" />
+    <ClInclude Include="node.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="property.h" />
     <ClInclude Include="resource.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="init.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapchip.cpp" />
+    <ClCompile Include="node.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
