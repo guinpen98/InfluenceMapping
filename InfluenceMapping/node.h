@@ -12,7 +12,7 @@ namespace influenceMapping {
 	class Node {
 	private:
 		NodeStatusE node_status = NoneE;
-		double distance = 0;
+		double distance = 1.0;
 	public:
 		void setStatus(const NodeStatusE new_status);
 		NodeStatusE getStatus() const;

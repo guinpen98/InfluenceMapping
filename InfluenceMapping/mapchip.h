@@ -1,6 +1,6 @@
 #ifndef INFLUENCE_MAPPING_MAPCHIP_H
 #define INFLUENCE_MAPPING_MAPCHIP_H
-#include<array>
+#include<vector>
 
 namespace influenceMapping {
 	const int size_map_X = 16;  //< マップチップXサイズ
@@ -11,10 +11,10 @@ namespace influenceMapping {
 	class Mapchip
 	{
 	private:
-		std::array<int, num_m_chip_ALL> map_chip;
+		std::vector<int> map_chip;
 	public:
-		void setMapchip(std::array<int, num_m_chip_ALL>& m_chip);
-		std::array<int, num_m_chip_ALL> getMapchip();
+		void setMapchip(const std::vector<int>& m_chip);
+		std::vector<int> getMapchip()const;
 	};
 }
 

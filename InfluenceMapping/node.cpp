@@ -8,22 +8,22 @@ namespace influenceMapping {
 		return node_status;
 	}
 	void Node::setDistance(const double parent_distance) {
-		distance = parent_distance - 0.1;
+		distance = parent_distance + 0.1;
 	}
 	double Node::getDistance()const {
 		return distance;
 	}
 	void selectNode(const std::vector<std::vector<Node>>& node, int& select_node_x, int& select_node_y) {
-		double max_distance = -1.0;
+		double min_distance = 2;
 		for (int y = 0; y < node.size(); y++) {
 			for (int x = 0; x < node[y].size(); x++) {
 				//ステータスがOpen以外のノードを除外
 				if (node[y][x].getStatus() != OpenE) continue;
 				double distance = node[y][x].getDistance();
 				//距離が最大値未満のものを除外
-				if (distance < max_distance) continue;
+				if (distance > min_distance) continue;
 				//最大値の更新
-				max_distance = distance;
+				min_distance = distance;
 				select_node_x = x;
 				select_node_y = y;
 			}
@@ -63,8 +63,8 @@ namespace influenceMapping {
 	void dijkstra(const std::vector<std::vector<int>>& field, std::vector<std::vector<Node>>& node, int select_node_x, int select_node_y) {
 		//アクターの位置のノードをOpenにして、距離を設定する
 		node[select_node_y][select_node_x].setStatus(OpenE);
-		node[select_node_y][select_node_x].setDistance(1.1);
-		while (node[select_node_y][select_node_x].getDistance() >= 0.1) {
+		node[select_node_y][select_node_x].setDistance(-0.1);
+		while (node[select_node_y][select_node_x].getDistance() <= 0.9) {
 			mobilizeOpenNode(field, node, select_node_x, select_node_y);
 			node[select_node_y][select_node_x].setStatus(ClosedE);
 			selectNode(node, select_node_x, select_node_y);

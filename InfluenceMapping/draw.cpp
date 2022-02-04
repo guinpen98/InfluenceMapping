@@ -2,7 +2,7 @@
 
 namespace influenceMapping {
     void drawMap(std::vector<std::vector<int>>& field, Mapchip mc) {
-        std::array<int, num_m_chip_ALL> map_chip = mc.getMapchip();
+        std::vector<int> map_chip = mc.getMapchip();
         for (int y = 0; y < window_square_h; y++) {
             for (int x = 0; x < window_square_w; x++) {
                 unsigned int cr = GetColor(0, 0, 0);
@@ -25,12 +25,12 @@ namespace influenceMapping {
     void drawInfluenceRate(std::vector<std::vector<Node>>& node) {
         for (int y = 0; y < window_square_h; y++)
             for (int x = 0; x < window_square_w; x++) {
-                DrawBox(x * square_size, y * square_size, (x + 1) * square_size, (y + 1) * square_size, GetColor(255 * node[y][x].getDistance(), 0, 0), FALSE);
+                DrawBox(x * square_size, y * square_size, (x + 1) * square_size, (y + 1) * square_size, GetColor(int(255 * (1 - node[y][x].getDistance())), 0, int(255 * node[y][x].getDistance())), FALSE);
             }
     }
     void drawPlayer(Player player) {
         Vec2 pc_coord = player.getInterimCoord();
-        std::array<int, num_c_chip_ALL> player_chip = player.getCharacterchip();
+        std::vector<int> player_chip = player.getCharacterchip();
         int graph_num = 0;
         switch (player.getDirection())
         {
@@ -54,7 +54,7 @@ namespace influenceMapping {
     }/*
     void drawNPC(life::NPC npc, Vec2 camera_coord) {
         Vec2 pc_coord = npc.getInterimCoord();
-        std::array<int, life::num_c_chip_ALL> npc_chip = npc.getCharacterchip();
+        std::vector<int> npc_chip = npc.getCharacterchip();
         int graph_num = 0;
         switch (npc.getDirection())
         {

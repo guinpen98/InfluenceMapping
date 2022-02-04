@@ -2,7 +2,6 @@
 #define INFLUENCE_MAPPING_CHARACTER_H
 #include "vector.h"
 #include "property.h"
-#include<array>
 #include <vector>
 
 namespace influenceMapping {
@@ -27,10 +26,10 @@ namespace influenceMapping {
 		Vec2 next_coord = Vec2(1.0, 1.0);
 		int walk_cnt = 0;
 		CharacterDirection direction = directionDownE;
-		std::array<int, num_c_chip_ALL> character_chip;
+		std::vector<int> character_chip;
 	public:
-		void setCharacterchip(std::array<int, num_c_chip_ALL>& c_chip);
-		std::array<int, num_c_chip_ALL> getCharacterchip();
+		void setCharacterchip(std::vector<int>& c_chip);
+		std::vector<int> getCharacterchip();
 		void setCurrentCoord(const Vec2 coord);
 		Vec2 getCurrentCoord()const;
 		void setNextCoord(const Vec2 coord);

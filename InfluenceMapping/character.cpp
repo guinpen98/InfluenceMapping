@@ -1,10 +1,10 @@
 #include "character.h"
 
 namespace influenceMapping {
-	void Character::setCharacterchip(std::array<int, num_c_chip_ALL>& m_chip) {
+	void Character::setCharacterchip(std::vector<int>& m_chip) {
 		character_chip = m_chip;
 	}
-	std::array<int, num_c_chip_ALL> Character::getCharacterchip() {
+	std::vector<int> Character::getCharacterchip() {
 		return character_chip;
 	}
 	void Character::setCurrentCoord(const Vec2 coord) {
