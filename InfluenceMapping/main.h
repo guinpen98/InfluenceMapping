@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include"player.h"
+#include"Agent.h"
 #include"draw.h"
 
 using namespace std;
@@ -11,6 +12,6 @@ using namespace std;
 namespace influenceMapping {
 	bool update();
 	void readMapFile(vector<vector<int>>& field);
-	void main(Mapchip mc,Player player);
+	void main(Mapchip mc,Player player,Agent agent);
 }
 #endif // !INFLUENCE_MAPPING_MAIN_H

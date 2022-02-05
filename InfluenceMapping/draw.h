@@ -5,13 +5,13 @@
 #include"mapchip.h"
 #include"node.h"
 #include"player.h"
-//#include"npc.h"
+#include"agent.h"
 #include<DxLib.h>
 
 namespace influenceMapping {
 	void drawMap(std::vector<std::vector<int>>& field, Mapchip mc);
-	void drawInfluenceRate(std::vector<std::vector<Node>>& node);
-	void drawPlayer(Player player);
-	//void drawNPC(life::NPC npc, Vec2 camera_coord);
+	void drawInfluenceRate(std::vector<std::vector<double>>& influence_map);
+	void drawPlayer(Player& player);
+	void drawAgent(Agent& agent);
 }
 #endif // !INFLUENCE_MAPPING_DRAW_H

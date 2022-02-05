@@ -22,7 +22,7 @@ namespace influenceMapping {
 
 	void selectNode(const std::vector<std::vector<Node>>& node, int& select_node_x, int& select_node_y);
 	void mobilizeOpenNode(const std::vector<std::vector<int>>& field, std::vector<std::vector<Node>>& node, const int& select_node_x, const int& select_node_y);
-	void dijkstra(const std::vector<std::vector<int>>& field, std::vector<std::vector<Node>>& node,int select_node_x, int select_node_y);
+	void dijkstra(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map,int select_node_x, int select_node_y);
 }
 
 #endif // !INFLUENCE_MAPPING_NODE_H

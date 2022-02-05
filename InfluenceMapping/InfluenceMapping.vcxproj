@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="agent.h" />
     <ClInclude Include="character.h" />
     <ClInclude Include="configuration.h" />
     <ClInclude Include="draw.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="vector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="agent.cpp" />
     <ClCompile Include="character.cpp" />
     <ClCompile Include="draw.cpp" />
     <ClCompile Include="init.cpp" />

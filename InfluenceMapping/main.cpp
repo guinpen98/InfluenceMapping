@@ -20,7 +20,7 @@ namespace influenceMapping {
         }
     }
 
-    void main(Mapchip mc, Player player) {
+    void main(Mapchip mc, Player player, Agent agent) {
         //地形の二次元配列
         vector<vector<int>> field(window_square_h, vector<int>(window_square_w));
         //地形ファイルの読み込み
@@ -37,12 +37,15 @@ namespace influenceMapping {
             }
             if (player.getState() == PlayerState::walkE) player.walk();
 
-            std::vector<std::vector<Node>> node(window_square_h, vector<Node>(window_square_w));
+            std::vector<std::vector<double>> influence_map(window_square_h, vector<double>(window_square_w));
             Vec2 p_coord = player.getNextCoord();
-            dijkstra(field, node, int(p_coord.x), int(p_coord.y));
+            dijkstra(field, influence_map, int(p_coord.x), int(p_coord.y));
+            if (agent.getState() == AgentState::agentStopE) agent.behavior(field,influence_map);
+            if (agent.getState() == AgentState::agentWalkE) agent.walk();
 
             drawMap(field, mc);
-            drawInfluenceRate(node);
+            drawInfluenceRate(influence_map);
+            drawAgent(agent);
             drawPlayer(player);
         }
     }

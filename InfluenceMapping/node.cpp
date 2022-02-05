@@ -60,7 +60,8 @@ namespace influenceMapping {
 				}
 			}
 	}
-	void dijkstra(const std::vector<std::vector<int>>& field, std::vector<std::vector<Node>>& node, int select_node_x, int select_node_y) {
+	void dijkstra(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, int select_node_x, int select_node_y) {
+		std::vector<std::vector<Node>> node(window_square_h, std::vector<Node>(window_square_w));
 		//アクターの位置のノードをOpenにして、距離を設定する
 		node[select_node_y][select_node_x].setStatus(OpenE);
 		node[select_node_y][select_node_x].setDistance(-0.1);
@@ -69,6 +70,8 @@ namespace influenceMapping {
 			node[select_node_y][select_node_x].setStatus(ClosedE);
 			selectNode(node, select_node_x, select_node_y);
 		}
-
+		for (int y = 0; y < window_square_h; y++)
+			for (int x = 0; x < window_square_w; x++)
+				influence_map[y][x] = node[y][x].getDistance();
 	}
 }

@@ -1,12 +1,15 @@
 #include"main.h"
 
-void loadChip(influenceMapping::Mapchip& mc, influenceMapping::Player& player) {
+void loadChip(influenceMapping::Mapchip& mc, influenceMapping::Player& player, influenceMapping::Agent& agent) {
     std::vector<int> map_chip(influenceMapping::num_m_chip_ALL);
     LoadDivGraph("base.png", influenceMapping::num_m_chip_ALL, influenceMapping::num_m_chip_X, influenceMapping::num_m_chip_Y, influenceMapping::size_map_X, influenceMapping::size_map_Y, std::data(map_chip));
     mc.setMapchip(map_chip);
     std::vector<int> pl_chip(influenceMapping::num_c_chip_ALL);
     LoadDivGraph("bear.png", influenceMapping::num_c_chip_ALL, influenceMapping::num_c_chip_X, influenceMapping::num_c_chip_Y, influenceMapping::size_character_X, influenceMapping::size_character_Y, std::data(pl_chip));
     player.setCharacterchip(pl_chip);
+    std::vector<int> npc_chip(influenceMapping::num_c_chip_ALL);
+    LoadDivGraph("agent.png", influenceMapping::num_c_chip_ALL, influenceMapping::num_c_chip_X, influenceMapping::num_c_chip_Y, influenceMapping::size_character_X, influenceMapping::size_character_Y, std::data(npc_chip));
+    agent.setCharacterchip(npc_chip);
 }
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -20,14 +23,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     // チップロード
     influenceMapping::Mapchip mc;
     influenceMapping::Player player;
-    loadChip(mc, player);
-    /*
-    //NPCチップロード
-    life::NPC npc;
-    std::vector<int> npc_chip(influenceMapping::num_c_chip_ALL);
-    LoadDivGraph("dog.png", life::num_c_chip_ALL, life::num_c_chip_X, life::num_c_chip_Y, life::size_character_X, life::size_character_Y, std::data(npc_chip));
-    npc.setCharacterchip(npc_chip);*/
+    influenceMapping::Agent agent;
+    loadChip(mc, player,agent);
     //main関数呼び出し
-    influenceMapping::main(mc,player);
+    influenceMapping::main(mc,player,agent);
     return DxLib::DxLib_End();
 }
