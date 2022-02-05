@@ -60,6 +60,9 @@ namespace influenceMapping {
 				}
 			}
 	}
+	void objectInfluence(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map) {
+
+	}
 	void dijkstra(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, int select_node_x, int select_node_y) {
 		std::vector<std::vector<Node>> node(window_square_h, std::vector<Node>(window_square_w));
 		//アクターの位置のノードをOpenにして、距離を設定する

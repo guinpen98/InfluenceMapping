@@ -3,8 +3,6 @@
 #include<random>
 #include <fstream>
 #include <sstream>
-#include"player.h"
-#include"Agent.h"
 #include"draw.h"
 
 using namespace std;

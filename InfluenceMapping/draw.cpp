@@ -1,17 +1,16 @@
 #include "draw.h"
 
 namespace influenceMapping {
-    void drawMap(std::vector<std::vector<int>>& field, Mapchip mc) {
-        std::vector<int> map_chip = mc.getMapchip();
+    void drawMap(std::vector<std::vector<int>>& field, Mapchip& mc) {
         for (int y = 0; y < window_square_h; y++) {
             for (int x = 0; x < window_square_w; x++) {
                 unsigned int cr = GetColor(0, 0, 0);
-                DrawExtendGraph(x * square_size,y * square_size,(x + 1) * square_size,(y + 1) * square_size, map_chip[33], TRUE);
+                DrawExtendGraph(x * square_size,y * square_size,(x + 1) * square_size,(y + 1) * square_size, mc.getMapchip()[33], TRUE);
                 switch (field[y][x])
                 {
                 case 1:
                     cr = GetColor(255, 255, 255);
-                    DrawExtendGraph(x  * square_size, y * square_size, (x + 1) * square_size, (y + 1) * square_size, map_chip[81], TRUE);
+                    DrawExtendGraph(x  * square_size, y * square_size, (x + 1) * square_size, (y + 1) * square_size, mc.getMapchip()[81], TRUE);
                     break;
                 case 0:
                     cr = GetColor(0, 0, 0);
@@ -27,6 +26,12 @@ namespace influenceMapping {
             for (int x = 0; x < window_square_w; x++) {
                 DrawBox(x * square_size, y * square_size, (x + 1) * square_size, (y + 1) * square_size, GetColor(int(255 * (1 - influence_map[y][x])), 0, int(255 * influence_map[y][x])), FALSE);
             }
+    }
+    void drawObject(std::vector<Object>& object, Mapchip& mc) {
+        for (int i = 0; i < object.size() - 1; i++) {
+            Vec2 coord = object[i].getCoord();
+            DrawExtendGraph(int((coord.x) * square_size), int((coord.y) * square_size), int((coord.x + 1) * square_size), int((coord.y + 1) * square_size), mc.getMapchip()[95], TRUE);
+        }
     }
     void drawPlayer(Player& player) {
         Vec2 pc_coord = player.getInterimCoord();

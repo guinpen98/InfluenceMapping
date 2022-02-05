@@ -25,9 +25,12 @@ namespace influenceMapping {
         vector<vector<int>> field(window_square_h, vector<int>(window_square_w));
         //地形ファイルの読み込み
         readMapFile(field);
+        //Objectの配列
+        vector<Object> object;
         //key入力
         char key_state[256];
         while (update()) {
+            if (object.size() < 3) objectAdd(field,object,agent);
             if (player.getState() == PlayerState::stopE) {
                 GetHitKeyStateAll(key_state);
                 if (key_state[KEY_INPUT_A] || key_state[KEY_INPUT_LEFT]) player.inputProcess(directionLeftE, field);
@@ -45,6 +48,7 @@ namespace influenceMapping {
 
             drawMap(field, mc);
             drawInfluenceRate(influence_map);
+            drawObject(object,mc);
             drawAgent(agent);
             drawPlayer(player);
         }
