@@ -35,7 +35,7 @@ namespace influenceMapping {
 	}
 	void Agent::pathSearch(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map) {
 		double max_influence = -1;
-		CharacterDirection new_direction;
+		CharacterDirection new_direction = directionUpE;
 		Vec2 coord = getCurrentCoord();
 		if (field[int(coord.y) - 1][int(coord.x)] == 0) {
 			if (influence_map[int(coord.y) - 1][int(coord.x)] > max_influence) {
@@ -71,7 +71,7 @@ namespace influenceMapping {
 				new_direction = directionRightE;
 				max_influence = influence_map[int(coord.y)][int(coord.x) + 1];
 			}
-			else if (influence_map[int(coord.y)][int(coord.x) + 1] > max_influence)
+			else if (influence_map[int(coord.y)][int(coord.x) + 1] == max_influence)
 				if (isReturn(new_direction)) {
 					new_direction = directionRightE;
 					max_influence = influence_map[int(coord.y)][int(coord.x) + 1];
