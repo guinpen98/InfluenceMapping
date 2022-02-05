@@ -35,11 +35,11 @@ namespace influenceMapping {
 	}
 	void Agent::pathSearch(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map) {
 		double max_influence = -1;
-		CharacterDirection new_direction = directionUpE;
 		Vec2 coord = getCurrentCoord();
+		Vec2 n_coord = Vec2(coord.x, coord.y - 1);
+		CharacterDirection new_direction = directionUpE;
 		if (field[int(coord.y) - 1][int(coord.x)] == 0) {
 			if (influence_map[int(coord.y) - 1][int(coord.x)] > max_influence) {
-				new_direction = directionUpE;
 				max_influence = influence_map[int(coord.y) - 1][int(coord.x)];
 			}
 		}
@@ -47,11 +47,13 @@ namespace influenceMapping {
 			if (influence_map[int(coord.y) + 1][int(coord.x)] > max_influence) {
 				new_direction = directionDownE;
 				max_influence = influence_map[int(coord.y) + 1][int(coord.x)];
+				n_coord = Vec2(coord.x,coord.y + 1);
 			}
 			else if (influence_map[int(coord.y) + 1][int(coord.x)] == max_influence)
-				if (isReturn(new_direction)) {
+				if (isReturn(new_direction) || n_coord.centerDistance() > Vec2(coord.x, coord.y + 1).centerDistance()) {
 					new_direction = directionDownE;
 					max_influence = influence_map[int(coord.y) + 1][int(coord.x)];
+					n_coord = Vec2(coord.x, coord.y + 1);
 				}
 		}
 
@@ -59,11 +61,13 @@ namespace influenceMapping {
 			if (influence_map[int(coord.y)][int(coord.x) - 1] > max_influence) {
 				new_direction = directionLeftE;
 				max_influence = influence_map[int(coord.y)][int(coord.x) - 1];
+				n_coord = Vec2(coord.x - 1, coord.y);
 			}
 			else if (influence_map[int(coord.y)][int(coord.x) - 1] == max_influence)
-				if (isReturn(new_direction)) {
+				if (isReturn(new_direction) || n_coord.centerDistance() > Vec2(coord.x - 1, coord.y).centerDistance()) {
 					new_direction = directionLeftE;
 					max_influence = influence_map[int(coord.y)][int(coord.x) - 1];
+					n_coord = Vec2(coord.x - 1, coord.y);
 				}
 		}
 		if (field[int(coord.y)][int(coord.x) + 1] == 0) {
@@ -72,7 +76,7 @@ namespace influenceMapping {
 				max_influence = influence_map[int(coord.y)][int(coord.x) + 1];
 			}
 			else if (influence_map[int(coord.y)][int(coord.x) + 1] == max_influence)
-				if (isReturn(new_direction)) {
+				if (isReturn(new_direction) || n_coord.centerDistance() > Vec2(coord.x + 1, coord.y).centerDistance()) {
 					new_direction = directionRightE;
 					max_influence = influence_map[int(coord.y)][int(coord.x) + 1];
 				}

@@ -1,5 +1,6 @@
 #ifndef INFLUENCE_MAPPING_VECTOR_H
 #define INFLUENCE_MAPPING_VECTOR_H
+#include"configuration.h"
 
 namespace influenceMapping {
 	struct Vec2
@@ -13,6 +14,9 @@ namespace influenceMapping {
 
 		double distance(const Vec2& coord)const {
 			return ((x - coord.x) * (x - coord.x) + (y - coord.y) * (y - coord.y));
+		}
+		double centerDistance()const {
+			return ((x - (window_square_w / 2 - 0.5)) * (x - (window_square_w / 2 - 0.5)) + (y - (window_square_w / 2)) * (window_square_w / 2));
 		}
 
 		bool isEqual(const Vec2& coord) const {
