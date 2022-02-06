@@ -47,7 +47,7 @@ namespace influenceMapping {
             if (agent.getState() == AgentState::agentWalkE) agent.walk();
 
             drawMap(field, mc);
-            drawInfluenceRate(influence_map);
+            // drawInfluenceRate(influence_map);
             drawObject(object,mc);
             drawAgent(agent);
             drawPlayer(player);
