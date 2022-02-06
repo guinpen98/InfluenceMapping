@@ -1,11 +1,8 @@
 #ifndef INFLUENCE_MAPPING_DRAW_H
 #define INFLUENCE_MAPPING_DRAW_H
-#include"vector.h"
-#include"configuration.h"
 #include"mapchip.h"
 #include"node.h"
 #include"player.h"
-#include"agent.h"
 #include"object.h"
 #include<DxLib.h>
 

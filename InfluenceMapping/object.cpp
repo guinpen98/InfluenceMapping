@@ -19,4 +19,9 @@ namespace influenceMapping {
 		object.emplace_back();
 		object.back().setCoord(Vec2(x, y));
 	}
+	void objectDelete(std::vector<Object>& object, const Agent& agent) {
+		Vec2 a_coord = agent.getCurrentCoord();
+		for (int i = 0; i < object.size(); i++)
+			if (object[i].getCoord().isEqual(a_coord)) object.erase(object.begin() + i);
+	}
 }

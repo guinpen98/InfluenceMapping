@@ -1,7 +1,6 @@
 #ifndef INFLUENCE_MAPPING_AGENT_H
 #define INFLUENCE_MAPPING_AGENT_H
 #include"character.h"
-#include"configuration.h"
 namespace influenceMapping {
 	enum AgentState {
 		agentStopE

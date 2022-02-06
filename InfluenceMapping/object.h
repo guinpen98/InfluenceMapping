@@ -12,6 +12,7 @@ namespace influenceMapping {
 		Vec2 getCoord()const;
 	};
 	void objectAdd(const std::vector<std::vector<int>>& field, std::vector<Object>& object,const Agent& agent);
+	void objectDelete(std::vector<Object>& object,const Agent& agent);
 }
 
 #endif // !INFLUENCE_MAPPING_OBJECT_H

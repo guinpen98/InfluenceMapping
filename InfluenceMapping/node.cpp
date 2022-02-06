@@ -8,22 +8,22 @@ namespace influenceMapping {
 		return node_status;
 	}
 	void Node::setDistance(const double parent_distance) {
-		distance = parent_distance + 0.1;
+		distance = parent_distance - 0.1;
 	}
 	double Node::getDistance()const {
 		return distance;
 	}
 	void selectNode(const std::vector<std::vector<Node>>& node, int& select_node_x, int& select_node_y) {
-		double min_distance = 2;
+		double max_distance = -1.0;
 		for (int y = 0; y < node.size(); y++) {
 			for (int x = 0; x < node[y].size(); x++) {
 				//ステータスがOpen以外のノードを除外
 				if (node[y][x].getStatus() != OpenE) continue;
 				double distance = node[y][x].getDistance();
 				//距離が最大値未満のものを除外
-				if (distance > min_distance) continue;
+				if (distance < max_distance) continue;
 				//最大値の更新
-				min_distance = distance;
+				max_distance = distance;
 				select_node_x = x;
 				select_node_y = y;
 			}
@@ -60,21 +60,41 @@ namespace influenceMapping {
 				}
 			}
 	}
-	void objectInfluence(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map) {
-
-	}
-	void dijkstra(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, int select_node_x, int select_node_y) {
+	void objectInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map,const Object object) {
+		int o_x = int(object.getCoord().x), o_y = int(object.getCoord().y);
 		std::vector<std::vector<Node>> node(window_square_h, std::vector<Node>(window_square_w));
-		//アクターの位置のノードをOpenにして、距離を設定する
-		node[select_node_y][select_node_x].setStatus(OpenE);
-		node[select_node_y][select_node_x].setDistance(-0.1);
-		while (node[select_node_y][select_node_x].getDistance() <= 0.9) {
-			mobilizeOpenNode(field, node, select_node_x, select_node_y);
-			node[select_node_y][select_node_x].setStatus(ClosedE);
-			selectNode(node, select_node_x, select_node_y);
+		//オブジェクトの位置のノードをOpenにして、距離を設定する
+		node[o_y][o_x].setStatus(OpenE);
+		node[o_y][o_x].setDistance(1.1);
+		while (node[o_y][o_x].getDistance() >= 0.1) {
+			mobilizeOpenNode(field, node, o_x, o_y);
+			node[o_y][o_x].setStatus(ClosedE);
+			selectNode(node, o_x, o_y);
 		}
 		for (int y = 0; y < window_square_h; y++)
 			for (int x = 0; x < window_square_w; x++)
-				influence_map[y][x] = node[y][x].getDistance();
+				if (influence_map[y][x] < node[y][x].getDistance()) influence_map[y][x] = node[y][x].getDistance();
+
+	}
+	void calculatingInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map,const std::vector<Object>& object, const Vec2& p_coord) {
+		for (int i = 0; i < object.size(); i++)
+			objectInfluence(field,influence_map,object[i]);
+
+		playerInfluence(field, influence_map, p_coord);
+	}
+	void playerInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const Vec2& p_coord) {
+		int p_x = int(p_coord.x), p_y = int(p_coord.y);
+		std::vector<std::vector<Node>> node(window_square_h, std::vector<Node>(window_square_w));
+		//プレイヤーの位置のノードをOpenにして、距離を設定する
+		node[p_y][p_x].setStatus(OpenE);
+		node[p_y][p_x].setDistance(1.1);
+		while (node[p_y][p_x].getDistance() >= 0.1) {
+			mobilizeOpenNode(field, node, p_x, p_y);
+			node[p_y][p_x].setStatus(ClosedE);
+			selectNode(node, p_x, p_y);
+		}
+		for (int y = 0; y < window_square_h; y++)
+			for (int x = 0; x < window_square_w; x++)
+				influence_map[y][x] = influence_map[y][x] * 0.4 + (1.0 - node[y][x].getDistance()) * 0.6;
 	}
 }

@@ -31,6 +31,7 @@ namespace influenceMapping {
         char key_state[256];
         while (update()) {
             if (object.size() < 3) objectAdd(field,object,agent);
+            objectDelete(object,agent);
             if (player.getState() == PlayerState::stopE) {
                 GetHitKeyStateAll(key_state);
                 if (key_state[KEY_INPUT_A] || key_state[KEY_INPUT_LEFT]) player.inputProcess(directionLeftE, field);
@@ -40,9 +41,8 @@ namespace influenceMapping {
             }
             if (player.getState() == PlayerState::walkE) player.walk();
 
-            std::vector<std::vector<double>> influence_map(window_square_h, vector<double>(window_square_w));
-            Vec2 p_coord = player.getNextCoord();
-            dijkstra(field, influence_map, int(p_coord.x), int(p_coord.y));
+            std::vector<std::vector<double>> influence_map(window_square_h, vector<double>(window_square_w,0.0));
+            calculatingInfluence(field, influence_map, object, player.getNextCoord());
             if (agent.getState() == AgentState::agentStopE) agent.behavior(field,influence_map);
             if (agent.getState() == AgentState::agentWalkE) agent.walk();
 
