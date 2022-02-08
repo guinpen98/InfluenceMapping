@@ -10,6 +10,6 @@ using namespace std;
 namespace influenceMapping {
 	bool update();
 	void readMapFile(vector<vector<int>>& field);
-	void main(Mapchip mc,Player player,Agent agent);
+	void main(Mapchip& mc,Player& player, std::vector<Agent>& agent);
 }
 #endif // !INFLUENCE_MAPPING_MAIN_H

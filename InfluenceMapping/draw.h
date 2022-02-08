@@ -11,6 +11,6 @@ namespace influenceMapping {
 	void drawInfluenceRate(std::vector<std::vector<double>>& influence_map);
 	void drawObject(std::vector<Object>& object, Mapchip& mc);
 	void drawPlayer(Player& player);
-	void drawAgent(Agent& agent);
+	void drawAgent(std::vector<Agent>& agent);
 }
 #endif // !INFLUENCE_MAPPING_DRAW_H

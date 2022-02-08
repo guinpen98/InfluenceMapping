@@ -37,6 +37,7 @@ namespace influenceMapping {
 		void setInterimCoord(const Vec2 coord);
 		void resetInterimCoord(const Vec2 coord);
 		Vec2 getInterimCoord()const;
+		void resetCoord(const Vec2 c_coord, const Vec2 i_coord, const Vec2 n_coord);
 		void setWalkCnt(const int new_cnt);
 		int getWalkCnt()const;
 		void setDirection(const enum CharacterDirection new_direction);

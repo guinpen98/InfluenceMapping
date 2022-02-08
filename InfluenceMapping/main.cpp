@@ -20,7 +20,7 @@ namespace influenceMapping {
         }
     }
 
-    void main(Mapchip mc, Player player, Agent agent) {
+    void main(Mapchip& mc, Player& player, std::vector<Agent>& agent) {
         //地形の二次元配列
         vector<vector<int>> field(window_square_h, vector<int>(window_square_w));
         //地形ファイルの読み込み
@@ -29,6 +29,9 @@ namespace influenceMapping {
         vector<Object> object;
         //key入力
         char key_state[256];
+        //agentの初期位置設定
+        agent[0].resetCoord(Vec2(8,1), Vec2(8, 1), Vec2(8, 1));
+        agent[1].resetCoord(Vec2(1,8), Vec2(1, 8), Vec2(1, 8));
         while (update()) {
             if (object.size() < 3) objectAdd(field,object,agent);
             objectDelete(object,agent);
@@ -43,8 +46,10 @@ namespace influenceMapping {
 
             std::vector<std::vector<double>> influence_map(window_square_h, vector<double>(window_square_w,0.0));
             calculatingInfluence(field, influence_map, object, player.getNextCoord());
-            if (agent.getState() == AgentState::agentStopE) agent.behavior(field,influence_map);
-            if (agent.getState() == AgentState::agentWalkE) agent.walk();
+            for (int i = 0; i < 2; i++) {
+                if (agent[i].getState() == AgentState::agentStopE) agent[i].behavior(field, influence_map);
+                if (agent[i].getState() == AgentState::agentWalkE) agent[i].walk();
+            }
 
             drawMap(field, mc);
             // drawInfluenceRate(influence_map);

@@ -34,6 +34,11 @@ namespace influenceMapping {
 	Vec2 Character::getInterimCoord()const {
 		return interim_coord;
 	}
+	void Character::resetCoord(const Vec2 c_coord, const Vec2 i_coord, const Vec2 n_coord) {
+		current_coord = c_coord;
+		interim_coord = i_coord;
+		next_coord = n_coord;
+	}
 	void Character::setWalkCnt(const int new_cnt) {
 		walk_cnt = new_cnt;
 	}

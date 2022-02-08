@@ -57,28 +57,30 @@ namespace influenceMapping {
         if (cnt >= walk_fps / 4 * 3 + 1 && cnt <= walk_fps) graph_num += 2;
         DrawExtendGraph(int((pc_coord.x) * square_size), int((pc_coord.y) * square_size), int((pc_coord.x + 1) * square_size), int((pc_coord.y + 1) * square_size), player_chip[graph_num], TRUE);
     }
-    void drawAgent(Agent& agent) {
-        Vec2 pc_coord = agent.getInterimCoord();
-        std::vector<int> agent_chip = agent.getCharacterchip();
-        int graph_num = 0;
-        switch (agent.getDirection())
-        {
-        case directionUpE:
-            graph_num = 9;
-            break;
-            break;
-        case directionLeftE:
-            graph_num = 3;
-            break;
-        case directionRightE:
-            graph_num = 6;
-            break;
-        default:
-            break;
+    void drawAgent(std::vector<Agent>& agent) {
+        std::vector<int> agent_chip = agent[0].getCharacterchip();
+        for (int i = 0; i < 2; i++) {
+            Vec2 pc_coord = agent[i].getInterimCoord();
+            int graph_num = 0;
+            switch (agent[i].getDirection())
+            {
+            case directionUpE:
+                graph_num = 9;
+                break;
+                break;
+            case directionLeftE:
+                graph_num = 3;
+                break;
+            case directionRightE:
+                graph_num = 6;
+                break;
+            default:
+                break;
+            }
+            int cnt = agent[i].getWalkCnt();
+            if ((cnt >= 0 && cnt <= walk_fps / 4) || (cnt >= walk_fps / 2 + 1 && cnt <= walk_fps / 4 * 3)) graph_num++;
+            if (cnt >= walk_fps / 4 * 3 + 1 && cnt <= walk_fps) graph_num += 2;
+            DrawExtendGraph(int((pc_coord.x) * square_size), int((pc_coord.y) * square_size), int((pc_coord.x + 1) * square_size), int((pc_coord.y + 1) * square_size), agent_chip[graph_num], TRUE);
         }
-        int cnt = agent.getWalkCnt();
-        if ((cnt >= 0 && cnt <= walk_fps / 4) || (cnt >= walk_fps / 2 + 1 && cnt <= walk_fps / 4 * 3)) graph_num++;
-        if (cnt >= walk_fps / 4 * 3 + 1 && cnt <= walk_fps) graph_num += 2;
-        DrawExtendGraph(int((pc_coord.x) * square_size), int((pc_coord.y) * square_size), int((pc_coord.x + 1) * square_size), int((pc_coord.y + 1) * square_size), agent_chip[graph_num], TRUE);
     }
 }
