@@ -17,7 +17,7 @@ namespace influenceMapping {
 		AgentState getState()const;
 		void walk();
 		void pathSearch(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map);
-		void behavior(const std::vector<std::vector<int>>& field,const std::vector<std::vector<double>>& influence_map);
+		void behavior(const std::vector<std::vector<int>>& field,const std::vector<std::vector<double>>& influence_map, std::vector<Agent>& agent);
 		bool isReturn(const CharacterDirection new_direction);
 	};
 }
