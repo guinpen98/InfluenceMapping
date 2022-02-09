@@ -21,7 +21,7 @@ namespace influenceMapping {
 	}
 	void objectDelete(std::vector<Object>& object, const std::vector<Agent>& agent) {
 		for (int i = 0; i < object.size(); i++)
-			for (int j = 0; j < 2; j++) {
+			for (int j = 0; j < agent_num; j++) {
 				Vec2 a_coord = agent[j].getCurrentCoord();
 				if (object[i].getCoord().isEqual(a_coord)) {
 					object.erase(object.begin() + i);

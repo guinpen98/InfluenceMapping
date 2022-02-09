@@ -33,7 +33,7 @@ namespace influenceMapping {
         agent[0].resetCoord(Vec2(8,1), Vec2(8, 1), Vec2(8, 1));
         agent[1].resetCoord(Vec2(1,8), Vec2(1, 8), Vec2(1, 8));
         while (update()) {
-            if (object.size() < 3) objectAdd(field,object,agent);
+            if (object.size() < obj_num) objectAdd(field,object,agent);
             objectDelete(object,agent);
             if (player.getState() == PlayerState::stopE) {
                 GetHitKeyStateAll(key_state);
@@ -46,7 +46,7 @@ namespace influenceMapping {
 
             std::vector<std::vector<double>> influence_map(window_square_h, vector<double>(window_square_w,0.0));
             calculatingInfluence(field, influence_map, object, player.getNextCoord());
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < agent_num; i++) {
                 if (agent[i].getState() == AgentState::agentStopE) agent[i].behavior(field, influence_map);
                 if (agent[i].getState() == AgentState::agentWalkE) agent[i].walk();
             }

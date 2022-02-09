@@ -23,7 +23,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     // チップロード
     influenceMapping::Mapchip mc;
     influenceMapping::Player player;
-    std::vector<influenceMapping::Agent> agent(2);
+    std::vector<influenceMapping::Agent> agent(influenceMapping::agent_num);
     loadChip(mc, player,agent[0]);
     //main関数呼び出し
     influenceMapping::main(mc,player,agent);

@@ -28,7 +28,7 @@ namespace influenceMapping {
             }
     }
     void drawObject(std::vector<Object>& object, Mapchip& mc) {
-        for (int i = 0; i < object.size() - 1; i++) {
+        for (int i = 0; i < object.size(); i++) {
             Vec2 coord = object[i].getCoord();
             DrawExtendGraph(int((coord.x) * square_size), int((coord.y) * square_size), int((coord.x + 1) * square_size), int((coord.y + 1) * square_size), mc.getMapchip()[95], TRUE);
         }
@@ -59,7 +59,7 @@ namespace influenceMapping {
     }
     void drawAgent(std::vector<Agent>& agent) {
         std::vector<int> agent_chip = agent[0].getCharacterchip();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < agent_num; i++) {
             Vec2 pc_coord = agent[i].getInterimCoord();
             int graph_num = 0;
             switch (agent[i].getDirection())
