@@ -32,6 +32,9 @@ namespace influenceMapping {
         //agentの初期位置設定
         agent[0].resetCoord(Vec2(8,1), Vec2(8, 1), Vec2(8, 1));
         agent[1].resetCoord(Vec2(1,8), Vec2(1, 8), Vec2(1, 8));
+        //agentの番号をセット
+        for (int i = 0; i < agent_num; i++)
+            agent[i].setNumber(i);
         while (update()) {
             if (object.size() < obj_num) objectAdd(field,object,agent);
             objectDelete(object,agent);

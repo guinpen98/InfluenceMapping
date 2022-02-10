@@ -4,7 +4,7 @@
 #include"agent.h"
 #include<random>
 namespace influenceMapping {
-	constexpr int obj_num = 3;
+	constexpr int obj_num = 4;
 	class Object {
 	private:
 		Vec2 coord = Vec2(10, 1);

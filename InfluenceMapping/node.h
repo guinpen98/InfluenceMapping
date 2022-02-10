@@ -4,6 +4,7 @@
 #include"object.h"
 #include"configuration.h"
 namespace influenceMapping {
+	constexpr double displacement_influence = 0.1;
 	enum NodeStatusE {
 		NoneE
 		, OpenE

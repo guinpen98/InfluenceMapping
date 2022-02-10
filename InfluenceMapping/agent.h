@@ -12,9 +12,12 @@ namespace influenceMapping {
 	private:
 		AgentState state = agentStopE;
 		int stop_count = 0;
+		int number = 0;
 	public:
 		void setState(const enum AgentState new_state);
 		AgentState getState()const;
+		void setNumber(const int new_num);
+		int getNumber()const;
 		void walk();
 		void pathSearch(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map);
 		void behavior(const std::vector<std::vector<int>>& field,const std::vector<std::vector<double>>& influence_map, std::vector<Agent>& agent);
