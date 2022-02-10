@@ -60,7 +60,7 @@ namespace influenceMapping {
 				}
 			}
 	}
-	void objectInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map,const Object object) {
+	void objectInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const Object object) {
 		int o_x = int(object.getCoord().x), o_y = int(object.getCoord().y);
 		std::vector<std::vector<Node>> node(window_square_h, std::vector<Node>(window_square_w));
 		//オブジェクトの位置のノードをOpenにして、距離を設定する
@@ -76,11 +76,12 @@ namespace influenceMapping {
 				if (influence_map[y][x] < node[y][x].getDistance()) influence_map[y][x] = node[y][x].getDistance();
 
 	}
-	void calculatingInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map,const std::vector<Object>& object, const Vec2& p_coord) {
+	void calculatingInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const std::vector<Object>& object, const Vec2& p_coord, std::vector<Agent>& agent) {
 		for (int i = 0; i < object.size(); i++)
-			objectInfluence(field,influence_map,object[i]);
+			objectInfluence(field, influence_map, object[i]);
 
 		playerInfluence(field, influence_map, p_coord);
+		agentInfluence(field,influence_map,agent);
 	}
 	void playerInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const Vec2& p_coord) {
 		int p_x = int(p_coord.x), p_y = int(p_coord.y);
@@ -95,6 +96,27 @@ namespace influenceMapping {
 		}
 		for (int y = 0; y < window_square_h; y++)
 			for (int x = 0; x < window_square_w; x++)
-				influence_map[y][x] = influence_map[y][x] * 0.4 + (1.0 - node[y][x].getDistance()) * 0.6;
+				influence_map[y][x] = influence_map[y][x] * 0.3 + (1.0 - node[y][x].getDistance()) * 0.4;
+	}
+	void agentInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const std::vector<Agent>& agent){
+		std::vector<std::vector<double>> temp_map(window_square_h, std::vector<double>(window_square_w, 1.0));
+		for (int i = 0; i < agent_num; i++) {
+			int a_x = int(agent[i].getNextCoord().x), a_y = int(agent[i].getNextCoord().y);
+			std::vector<std::vector<Node>> node(window_square_h, std::vector<Node>(window_square_w));
+			//オブジェクトの位置のノードをOpenにして、距離を設定する
+			node[a_y][a_x].setStatus(OpenE);
+			node[a_y][a_x].setDistance(1.1);
+			while (node[a_y][a_x].getDistance() >= 0.1) {
+				mobilizeOpenNode(field, node, a_x, a_y);
+				node[a_y][a_x].setStatus(ClosedE);
+				selectNode(node, a_x, a_y);
+			}
+			for (int y = 0; y < window_square_h; y++)
+				for (int x = 0; x < window_square_w; x++)
+					if (temp_map[y][x] > (1.0 - node[y][x].getDistance())) temp_map[y][x] = 1.0 - node[y][x].getDistance();
+		}
+		for (int y = 0; y < window_square_h; y++)
+			for (int x = 0; x < window_square_w; x++)
+				influence_map[y][x] += temp_map[y][x] * 0.3;
 	}
 }

@@ -24,7 +24,7 @@ namespace influenceMapping {
     void drawInfluenceRate(std::vector<std::vector<double>>& influence_map) {
         for (int y = 0; y < window_square_h; y++)
             for (int x = 0; x < window_square_w; x++) {
-                DrawBox(x * square_size, y * square_size, (x + 1) * square_size, (y + 1) * square_size, GetColor(int(255 * (1 - influence_map[y][x])), 0, int(255 * influence_map[y][x])), FALSE);
+                DrawBox(x * square_size, y * square_size, (x + 1) * square_size, (y + 1) * square_size, GetColor(int(255 * (1 - influence_map[y][x])), 0, int(255 * influence_map[y][x])), TRUE);
             }
     }
     void drawObject(std::vector<Object>& object, Mapchip& mc) {

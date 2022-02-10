@@ -44,15 +44,15 @@ namespace influenceMapping {
             }
             if (player.getState() == PlayerState::walkE) player.walk();
 
-            std::vector<std::vector<double>> influence_map(window_square_h, vector<double>(window_square_w,0.0));
-            calculatingInfluence(field, influence_map, object, player.getNextCoord());
+            vector<vector<double>> influence_map(window_square_h, vector<double>(window_square_w,0.0));
+            calculatingInfluence(field, influence_map, object, player.getNextCoord(),agent);
             for (int i = 0; i < agent_num; i++) {
                 if (agent[i].getState() == AgentState::agentStopE) agent[i].behavior(field, influence_map,agent);
                 if (agent[i].getState() == AgentState::agentWalkE) agent[i].walk();
             }
 
             drawMap(field, mc);
-            // drawInfluenceRate(influence_map);
+            //drawInfluenceRate(influence_map);
             drawObject(object,mc);
             drawAgent(agent);
             drawPlayer(player);
