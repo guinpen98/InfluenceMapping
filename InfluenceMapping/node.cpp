@@ -96,7 +96,7 @@ namespace influenceMapping {
 		}
 		for (int y = 0; y < window_square_h; y++)
 			for (int x = 0; x < window_square_w; x++)
-				influence_map[y][x] = influence_map[y][x] * 0.3 + (1.0 - node[y][x].getDistance()) * 0.4;
+				influence_map[y][x] = influence_map[y][x] * 0.2 + (1.0 - node[y][x].getDistance()) * 0.6;
 	}
 	void agentInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const std::vector<Agent>& agent){
 		std::vector<std::vector<double>> temp_map(window_square_h, std::vector<double>(window_square_w, 1.0));
@@ -117,6 +117,6 @@ namespace influenceMapping {
 		}
 		for (int y = 0; y < window_square_h; y++)
 			for (int x = 0; x < window_square_w; x++)
-				influence_map[y][x] += temp_map[y][x] * 0.3;
+				influence_map[y][x] += temp_map[y][x] * 0.2;
 	}
 }
