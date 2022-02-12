@@ -13,10 +13,6 @@ namespace influenceMapping {
 		return number;
 	}
 	void Agent::walk() {
-		if (getCurrentCoord().isEqual(getNextCoord())) {
-			setState(agentStopE);
-			return;
-		}
 		switch (getDirection())
 		{
 		case directionDownE:
@@ -96,51 +92,49 @@ namespace influenceMapping {
 	void Agent::behavior(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map, std::vector<Agent>& agent) {
 		stop_count++;
 		if (stop_count > 0) {
-			setState(agentWalkE);
 			pathSearch(field,influence_map);
 			Vec2 tmp_coord = getCurrentCoord();
+			Vec2 next_coord = Vec2(0.0, 0.0);
 			int other_num = getNumber() == 0 ? 1 : 0;
-			Vec2 other_c_coord = agent[other_num].getCurrentCoord();
-			Vec2 other_n_coord = agent[other_num].getNextCoord();
 			switch (getDirection())
 			{
 			case directionDownE:
 				if (tmp_coord.y >= window_square_h) return;
-				if (field[int(tmp_coord.y) + 1][int(tmp_coord.x)] == 1) return;
-				if (other_c_coord.isEqual(Vec2(tmp_coord.x, tmp_coord.y+1))) return;
-				if (other_n_coord.isEqual(Vec2(tmp_coord.x, tmp_coord.y+1))) return;
-				//if (influence_map[int(tmp_coord.y) + 1][int(tmp_coord.x)] == influence_map[int(tmp_coord.y)][int(tmp_coord.x)]) return;
-				setNextCoord(Vec2(0.0, 1.0));
+				tmp_coord = Vec2(tmp_coord.x, tmp_coord.y + 1);
+				next_coord = Vec2(0.0, 1.0);
 				break;
 			case directionUpE:
 				if (tmp_coord.y <= 0.0) return;
-				if (field[int(tmp_coord.y) - 1][int(tmp_coord.x)] == 1) return;
-				if (other_c_coord.isEqual(Vec2(tmp_coord.x, tmp_coord.y-1))) return;
-				if (other_n_coord.isEqual(Vec2(tmp_coord.x, tmp_coord.y-1))) return;
-				//if (influence_map[int(tmp_coord.y) - 1][int(tmp_coord.x)] == influence_map[int(tmp_coord.y)][int(tmp_coord.x)]) return;
-				setNextCoord(Vec2(0.0, -1.0));
+				tmp_coord = Vec2(tmp_coord.x, tmp_coord.y - 1);
+				next_coord = Vec2(0.0, -1.0);
 				break;
 			case directionRightE:
 				if (tmp_coord.x >= window_square_w) return;
-				if (field[int(tmp_coord.y)][int(tmp_coord.x) + 1] == 1) return;
-				if (other_c_coord.isEqual(Vec2(tmp_coord.x+1, tmp_coord.y))) return;
-				if (other_n_coord.isEqual(Vec2(tmp_coord.x+1, tmp_coord.y))) return;
-				//if (influence_map[int(tmp_coord.y)][int(tmp_coord.x) + 1] == influence_map[int(tmp_coord.y)][int(tmp_coord.x)]) return;
-				setNextCoord(Vec2(1.0, 0.0));
+				tmp_coord = Vec2(tmp_coord.x + 1, tmp_coord.y);
+				next_coord = Vec2(1.0, 0.0);
 				break;
 			case directionLeftE:
 				if (tmp_coord.x <= 0.0) return;
-				if (field[int(tmp_coord.y)][int(tmp_coord.x) - 1] == 1) return;
-				if (other_c_coord.isEqual(Vec2(tmp_coord.x-1, tmp_coord.y))) return;
-				if (other_n_coord.isEqual(Vec2(tmp_coord.x-1, tmp_coord.y))) return;
-				//if (influence_map[int(tmp_coord.y)][int(tmp_coord.x) - 1] == influence_map[int(tmp_coord.y)][int(tmp_coord.x)]) return;
-				setNextCoord(Vec2(-1.0, 0.0));
+				tmp_coord = Vec2(tmp_coord.x - 1, tmp_coord.y);
+				next_coord = Vec2(-1.0, 0.0);
 				break;
 			default:
 				break;
 			}
+			if (field[int(tmp_coord.y)][int(tmp_coord.x)] == 1) return;
+			if (isSameCoord(agent, tmp_coord)) return;
+			setNextCoord(next_coord);
+			setState(agentWalkE);
 			stop_count = 0;
 		}
+	}
+	bool Agent::isSameCoord(const std::vector<Agent>& agent,const Vec2 next_coord) {
+		for (int i = 0; i < agent_num; i++) {
+			if (getNumber() == i) continue;
+			if (agent[i].getCurrentCoord().isEqual(next_coord)) return true;
+			if (agent[i].getNextCoord().isEqual(next_coord)) return true;
+		}
+		return false;
 	}
 	bool Agent::isReturn(const CharacterDirection n_d) {
 		CharacterDirection d = getDirection();

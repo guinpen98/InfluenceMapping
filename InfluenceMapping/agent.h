@@ -21,6 +21,7 @@ namespace influenceMapping {
 		void walk();
 		void pathSearch(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map);
 		void behavior(const std::vector<std::vector<int>>& field,const std::vector<std::vector<double>>& influence_map, std::vector<Agent>& agent);
+		bool isSameCoord(const std::vector<Agent>& agent, const Vec2 next_coord);
 		bool isReturn(const CharacterDirection new_direction);
 	};
 }
