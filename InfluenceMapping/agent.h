@@ -6,7 +6,7 @@ namespace influenceMapping {
 		agentStopE
 		, agentWalkE
 	};
-	constexpr int agent_num = 2;
+	constexpr int agent_num = 3;
 	class Agent : public Character
 	{
 	private:

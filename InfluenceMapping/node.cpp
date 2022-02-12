@@ -95,7 +95,7 @@ namespace influenceMapping {
 			}
 			for (int y = 0; y < window_square_h; y++)
 				for (int x = 0; x < window_square_w; x++)
-					influence_map[y][x] += (1.0 - node[y][x].getDistance()) * 0.15;
+					influence_map[y][x] += (1.0 - node[y][x].getDistance()) * 0.3/agent_num;
 		}
 	}
 }
