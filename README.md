@@ -6,3 +6,6 @@ Influence map by the player (enemie) and objects
 It uses an external library called the [DxLib](https://dxlib.xsrv.jp/).
 
 From the source code folder hierarchy, place the DxLib folder you downloaded in `.\..\..\..\..\Downloads\DxLib_VC3_23\DxLib_VC\プロジェクトに追加すべきファイル_VC用` .
+## Screenshot
+![screenshot](https://github.com/guinpen98/InfluenceMapping/blob/master/picture/screenshot.png?raw=true)
+![screenshot](https://github.com/guinpen98/InfluenceMapping/blob/master/picture/screenshot%20(2).png?raw=true)
