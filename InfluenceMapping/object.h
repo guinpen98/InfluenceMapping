@@ -13,6 +13,7 @@ namespace influenceMapping {
 		Vec2 getCoord()const;
 	};
 	void objectAdd(const std::vector<std::vector<int>>& field, std::vector<Object>& object,const std::vector<Agent>& agent);
+	bool closeToAgent(const std::vector<Agent>& agent, const Vec2 new_coord);
 	void objectDelete(std::vector<Object>& object,const std::vector<Agent>& agent);
 }
 
