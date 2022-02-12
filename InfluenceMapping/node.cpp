@@ -31,34 +31,16 @@ namespace influenceMapping {
 	}
 	void mobilizeOpenNode(const std::vector<std::vector<int>>& field, std::vector<std::vector<Node>>& node, const int& select_node_x, const int& select_node_y) {
 		double p_distance = node[select_node_y][select_node_x].getDistance();
-		if (select_node_x > 0)
-			if (field[select_node_y][select_node_x - 1] == 0) {
-				if (node[select_node_y][select_node_x - 1].getStatus() == NoneE) {
-					node[select_node_y][select_node_x - 1].setStatus(OpenE);
-					node[select_node_y][select_node_x - 1].setDistance(p_distance);
-				}
-			}
-		if (select_node_x < window_square_w - 1)
-			if (field[select_node_y][select_node_x + 1] == 0) {
-				if (node[select_node_y][select_node_x + 1].getStatus() == NoneE) {
-					node[select_node_y][select_node_x + 1].setStatus(OpenE);
-					node[select_node_y][select_node_x + 1].setDistance(p_distance);
-				}
-			}
-		if (select_node_y > 0)
-			if (field[select_node_y - 1][select_node_x] == 0) {
-				if (node[select_node_y - 1][select_node_x].getStatus() == NoneE) {
-					node[select_node_y - 1][select_node_x].setStatus(OpenE);
-					node[select_node_y - 1][select_node_x].setDistance(p_distance);
-				}
-			}
-		if (select_node_y < window_square_h - 1)
-			if (field[select_node_y + 1][select_node_x] == 0) {
-				if (node[select_node_y + 1][select_node_x].getStatus() == NoneE) {
-					node[select_node_y + 1][select_node_x].setStatus(OpenE);
-					node[select_node_y + 1][select_node_x].setDistance(p_distance);
-				}
-			}
+		if (select_node_x > 0) openNode(field,node, select_node_x - 1, select_node_y,p_distance);
+		if (select_node_x < window_square_w - 1)openNode(field, node, select_node_x + 1, select_node_y, p_distance);
+		if (select_node_y > 0) openNode(field, node, select_node_x, select_node_y - 1, p_distance);
+		if (select_node_y < window_square_h - 1) openNode(field, node, select_node_x, select_node_y + 1, p_distance);
+	}
+	void openNode(const std::vector<std::vector<int>>& field, std::vector<std::vector<Node>>& node, const int& open_node_x, const int& open_node_y,const double p_distance) {
+		if (field[open_node_y][open_node_x] != 0) return;
+		if (node[open_node_y][open_node_x].getStatus() != NoneE) return;
+		node[open_node_y][open_node_x].setStatus(OpenE);
+		node[open_node_y][open_node_x].setDistance(p_distance);
 	}
 	void objectInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const Object object) {
 		int o_x = int(object.getCoord().x), o_y = int(object.getCoord().y);
