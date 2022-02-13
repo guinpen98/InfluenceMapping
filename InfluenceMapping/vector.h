@@ -27,7 +27,10 @@ namespace influenceMapping {
 			return Vec2(x + coord.x, y + coord.y);
 		}
 	};
-
+	const Vec2 right_coord = Vec2(1.0, 0.0);
+	const Vec2 left_coord = Vec2(-1.0, 0.0);
+	const Vec2 down_coord = Vec2(0.0, 1.0);
+	const Vec2 up_coord = Vec2(0.0, -1.0);
 }
 
 #endif // !INFLUENCE_MAPPING_VECTOR_H
