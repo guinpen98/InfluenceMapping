@@ -175,9 +175,6 @@
     <ClCompile Include="object.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="InfluenceMapping.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
