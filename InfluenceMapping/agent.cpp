@@ -16,16 +16,16 @@ namespace influenceMapping {
 		switch (getDirection())
 		{
 		case directionDownE:
-			setInterimCoord(Vec2(0.0, 1.0 / walk_fps));
+			setInterimCoord(down_coord / walk_fps);
 			break;
 		case directionUpE:
-			setInterimCoord(Vec2(0.0, -1.0 / walk_fps));
+			setInterimCoord(up_coord / walk_fps);
 			break;
 		case directionRightE:
-			setInterimCoord(Vec2(1.0 / walk_fps, 0.0));
+			setInterimCoord(right_coord / walk_fps);
 			break;
 		case directionLeftE:
-			setInterimCoord(Vec2(-1.0 / walk_fps, 0.0));
+			setInterimCoord(left_coord / walk_fps);
 			break;
 		default:
 			break;
@@ -100,29 +100,25 @@ namespace influenceMapping {
 			{
 			case directionDownE:
 				if (tmp_coord.y >= window_square_h) return;
-				tmp_coord = Vec2(tmp_coord.x, tmp_coord.y + 1);
-				next_coord = Vec2(0.0, 1.0);
+				next_coord = down_coord;
 				break;
 			case directionUpE:
 				if (tmp_coord.y <= 0.0) return;
-				tmp_coord = Vec2(tmp_coord.x, tmp_coord.y - 1);
-				next_coord = Vec2(0.0, -1.0);
+				next_coord = up_coord;
 				break;
 			case directionRightE:
 				if (tmp_coord.x >= window_square_w) return;
-				tmp_coord = Vec2(tmp_coord.x + 1, tmp_coord.y);
-				next_coord = Vec2(1.0, 0.0);
+				next_coord = right_coord;
 				break;
 			case directionLeftE:
 				if (tmp_coord.x <= 0.0) return;
-				tmp_coord = Vec2(tmp_coord.x - 1, tmp_coord.y);
-				next_coord = Vec2(-1.0, 0.0);
+				next_coord = left_coord;
 				break;
 			default:
 				break;
 			}
 			if (field[int(tmp_coord.y)][int(tmp_coord.x)] == 1) return;
-			if (isSameCoord(agent, tmp_coord)) return;
+			if (isSameCoord(agent, tmp_coord + next_coord)) return;
 			setNextCoord(next_coord);
 			setState(agentWalkE);
 			stop_count = 0;

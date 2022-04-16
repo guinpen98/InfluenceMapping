@@ -10,47 +10,46 @@ namespace influenceMapping {
 	void Player::inputProcess(CharacterDirection direction, std::vector<std::vector<int>>& field) {
 		Vec2 tmp_coord = getCurrentCoord();
 		setDirection(direction);
+		Vec2 next_coord;
 		switch (direction)
 		{
 		case directionDownE:
 			if (tmp_coord.y >= window_square_h - 1) return;
-			if (field[int(tmp_coord.y) + 1][int(tmp_coord.x)] == 1) return;
-			setNextCoord(Vec2(0.0, 1.0));
+			next_coord = down_coord;
 			break;
 		case directionUpE:
 			if (tmp_coord.y <= 0.0) return;
-			if (field[int(tmp_coord.y) - 1][int(tmp_coord.x)] == 1) return;
-			setNextCoord(Vec2(0.0, -1.0));
+			next_coord = up_coord;
 			break;
 		case directionRightE:
 			if (tmp_coord.x >= window_square_w - 1) return;
-			if (field[int(tmp_coord.y)][int(tmp_coord.x) + 1] == 1) return;
-			setNextCoord(Vec2(1.0, 0.0));
+			next_coord = right_coord;
 			break;
 		case directionLeftE:
 			if (tmp_coord.x <= 0.0) return;
-			if (field[int(tmp_coord.y)][int(tmp_coord.x) - 1] == 1) return;
-			setNextCoord(Vec2(-1.0, 0.0));
+			next_coord = left_coord;
 			break;
 		default:
 			break;
 		}
+		if (field[int(tmp_coord.y + next_coord.y)][int(tmp_coord.x + next_coord.x)] == 1) return;
+		setNextCoord(next_coord);
 		setState(PlayerState::walkE);
 	}
 	void Player::walk() {
 		switch (getDirection())
 		{
 		case directionDownE:
-			setInterimCoord(Vec2(0.0, 1.0 / walk_fps));
+			setInterimCoord(down_coord / walk_fps);
 			break;
 		case directionUpE:
-			setInterimCoord(Vec2(0.0, -1.0 / walk_fps));
+			setInterimCoord(up_coord / walk_fps);
 			break;
 		case directionRightE:
-			setInterimCoord(Vec2(1.0 / walk_fps, 0.0));
+			setInterimCoord(right_coord / walk_fps);
 			break;
 		case directionLeftE:
-			setInterimCoord(Vec2(-1.0 / walk_fps, 0.0));
+			setInterimCoord(left_coord / walk_fps);
 			break;
 		default:
 			break;
