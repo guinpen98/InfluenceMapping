@@ -1,6 +1,7 @@
-
+﻿
 #ifndef INFLUENCE_MAPPING_CONFIGURATION_H
 #define INFLUENCE_MAPPING_CONFIGURATION_H
+#include<vector>
 
 constexpr int square_size = 64;
 

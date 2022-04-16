@@ -1,4 +1,4 @@
-#ifndef INFLUENCE_MAPPING_NODE_H
+﻿#ifndef INFLUENCE_MAPPING_NODE_H
 #define INFLUENCE_MAPPING_NODE_H
 #include<vector>
 #include"object.h"
@@ -23,12 +23,12 @@ namespace influenceMapping {
 	};
 
 	void selectNode(const std::vector<std::vector<Node>>& node, int& select_node_x, int& select_node_y);
-	void mobilizeOpenNode(const std::vector<std::vector<int>>& field, std::vector<std::vector<Node>>& node, const int& select_node_x, const int& select_node_y);
-	void openNode(const std::vector<std::vector<int>>& field, std::vector<std::vector<Node>>& node, const int& open_node_x, const int& open_node_y,const double p_distance);
-	void objectInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const Object object);
-	void calculatingInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const std::vector<Object>& object, const Vec2& p_coord, std::vector<Agent>& agent);
-	void playerInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const Vec2& p_coord);
-	void agentInfluence(const std::vector<std::vector<int>>& field, std::vector<std::vector<double>>& influence_map, const std::vector<Agent>& agent);
+	void mobilizeOpenNode(const field_matrix& field, std::vector<std::vector<Node>>& node, const int& select_node_x, const int& select_node_y);
+	void openNode(const field_matrix& field, std::vector<std::vector<Node>>& node, const int& open_node_x, const int& open_node_y,const double p_distance);
+	void objectInfluence(const field_matrix& field, std::vector<std::vector<double>>& influence_map, const Object object);
+	void calculatingInfluence(const field_matrix& field, std::vector<std::vector<double>>& influence_map, const std::vector<Object>& object, const Vec2& p_coord, std::vector<Agent>& agent);
+	void playerInfluence(const field_matrix& field, std::vector<std::vector<double>>& influence_map, const Vec2& p_coord);
+	void agentInfluence(const field_matrix& field, std::vector<std::vector<double>>& influence_map, const std::vector<Agent>& agent);
 }
 
 #endif // !INFLUENCE_MAPPING_NODE_H

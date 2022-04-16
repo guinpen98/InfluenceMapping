@@ -1,9 +1,9 @@
-#include "main.h"
+﻿#include "main.h"
 
 namespace influenceMapping {
     bool update() { return (DxLib::ScreenFlip() != -1 && DxLib::ClearDrawScreen() != -1 && DxLib::ProcessMessage() != -1); }
 
-    void readMapFile(vector<vector<int>>& field) {
+    void readMapFile(field_matrix& field) {
         ifstream ifs("influence_mapping.csv");
         string str;
         int i = 0;
@@ -22,7 +22,7 @@ namespace influenceMapping {
 
     void main(Mapchip& mc, Player& player, std::vector<Agent>& agent) {
         //地形の二次元配列
-        vector<vector<int>> field(window_square_h, vector<int>(window_square_w));
+        field_matrix field(window_square_h, vector<int>(window_square_w));
         //地形ファイルの読み込み
         readMapFile(field);
         //Objectの配列

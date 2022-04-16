@@ -1,4 +1,4 @@
-#include "mapchip.h"
+﻿#include "mapchip.h"
 namespace influenceMapping {
 	void Mapchip::setMapchip(const std::vector<int>& m_chip) {
 		map_chip = m_chip;

@@ -1,4 +1,4 @@
-#ifndef INFLUENCE_MAPPING_PROPERTY_H
+﻿#ifndef INFLUENCE_MAPPING_PROPERTY_H
 #define INFLUENCE_MAPPING_PROPERTY_H
 namespace influenceMapping {
 

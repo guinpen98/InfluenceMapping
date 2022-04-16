@@ -1,4 +1,4 @@
-#ifndef INFLUENCE_MAPPING_MAIN_H
+﻿#ifndef INFLUENCE_MAPPING_MAIN_H
 #define INFLUENCE_MAPPING_MAIN_H
 #include<random>
 #include <fstream>
@@ -9,7 +9,7 @@ using namespace std;
 
 namespace influenceMapping {
 	bool update();
-	void readMapFile(vector<vector<int>>& field);
+	void readMapFile(field_matrix& field);
 	void main(Mapchip& mc,Player& player, std::vector<Agent>& agent);
 }
 #endif // !INFLUENCE_MAPPING_MAIN_H

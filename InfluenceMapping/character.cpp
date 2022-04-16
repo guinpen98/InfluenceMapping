@@ -1,4 +1,4 @@
-#include "character.h"
+﻿#include "character.h"
 
 namespace influenceMapping {
 	void Character::setCharacterchip(std::vector<int>& m_chip) {

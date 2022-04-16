@@ -1,4 +1,4 @@
-#include "agent.h"
+﻿#include "agent.h"
 namespace influenceMapping {
 	void Agent::setState(const enum AgentState new_state) {
 		state = new_state;
@@ -39,7 +39,7 @@ namespace influenceMapping {
 		}
 		setWalkCnt(w_cnt);
 	}
-	void Agent::pathSearch(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map) {
+	void Agent::pathSearch(const field_matrix& field, const std::vector<std::vector<double>>& influence_map) {
 		double max_influence = -1;
 		Vec2 coord = getCurrentCoord();
 		Vec2 n_coord = Vec2(coord.x, coord.y - 1);
@@ -89,7 +89,7 @@ namespace influenceMapping {
 		}
 		setDirection(new_direction);
 	}
-	void Agent::behavior(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map, std::vector<Agent>& agent) {
+	void Agent::behavior(const field_matrix& field, const std::vector<std::vector<double>>& influence_map, std::vector<Agent>& agent) {
 		stop_count++;
 		if (stop_count > 0) {
 			pathSearch(field,influence_map);
