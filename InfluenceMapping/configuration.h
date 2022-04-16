@@ -10,4 +10,7 @@ constexpr int window_square_h = 15;
 constexpr int window_w = square_size * window_square_w;
 constexpr int window_h = square_size * window_square_h;
 
+using field_array = std::vector<int>;
+using field_matrix = std::vector<field_array>;
+
 #endif // !INFLUENCE_MAPPING_CONFIGURATION_H

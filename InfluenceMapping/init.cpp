@@ -1,4 +1,4 @@
-#include"main.h"
+﻿#include"main.h"
 
 void loadChip(influenceMapping::Mapchip& mc, influenceMapping::Player& player, influenceMapping::Agent& agent) {
     std::vector<int> map_chip(influenceMapping::num_m_chip_ALL);
