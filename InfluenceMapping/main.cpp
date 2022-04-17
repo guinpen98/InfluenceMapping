@@ -48,7 +48,7 @@ namespace influenceMapping {
             }
             if (player.getState() == PlayerState::walkE) player.walk();
 
-            vector<vector<double>> influence_map(window_square_h, vector<double>(window_square_w,0.0));
+            influence_matrix influence_map(window_square_h, influence_array(window_square_w,0.0));
             calculatingInfluence(field, influence_map, object, player.getNextCoord(),agent);
             for (int i = 0; i < agent_num; i++) {
                 if (agent[i].getState() == AgentState::agentStopE) agent[i].behavior(field, influence_map,agent);
