@@ -6,6 +6,6 @@
 #include"configuration.h"
 
 namespace influenceMapping {
-	void readMapFile(std::vector<std::vector<int>>& field);
+	void readMapFile(field_matrix& field);
 }
 #endif // !INFLUENCE_LOAD_FILE_H

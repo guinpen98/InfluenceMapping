@@ -1,7 +1,7 @@
 #include "load_file.h"
 
 namespace influenceMapping {
-    void readMapFile(std::vector<std::vector<int>>& field) {
+    void readMapFile(field_matrix& field) {
         std::ifstream ifs("influence_mapping.csv");
         std::string str;
         int i = 0;
