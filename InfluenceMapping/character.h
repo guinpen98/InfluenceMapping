@@ -1,4 +1,4 @@
-#ifndef INFLUENCE_MAPPING_CHARACTER_H
+﻿#ifndef INFLUENCE_MAPPING_CHARACTER_H
 #define INFLUENCE_MAPPING_CHARACTER_H
 #include "vector.h"
 #include "property.h"
