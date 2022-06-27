@@ -1,4 +1,4 @@
-#ifndef INFLUENCE_MAPPING_VECTOR_H
+﻿#ifndef INFLUENCE_MAPPING_VECTOR_H
 #define INFLUENCE_MAPPING_VECTOR_H
 #include"configuration.h"
 

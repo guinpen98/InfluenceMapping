@@ -1,4 +1,4 @@
-#include "player.h"
+﻿#include "player.h"
 namespace influenceMapping {
 	void Player::setState(const enum PlayerState new_state) {
 		state = new_state;
@@ -7,7 +7,7 @@ namespace influenceMapping {
 		return state;
 	}
 
-	void Player::inputProcess(CharacterDirection direction, std::vector<std::vector<int>>& field) {
+	void Player::inputProcess(CharacterDirection direction, field_matrix& field) {
 		Vec2 tmp_coord = getCurrentCoord();
 		setDirection(direction);
 		Vec2 next_coord;

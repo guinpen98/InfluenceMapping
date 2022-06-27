@@ -1,19 +1,16 @@
-#include "draw.h"
+﻿#include "draw.h"
 
 namespace influenceMapping {
-    void drawMap(std::vector<std::vector<int>>& field, Mapchip& mc) {
+    void drawMap(field_matrix& field, Mapchip& mc) {
         for (int y = 0; y < window_square_h; y++) {
             for (int x = 0; x < window_square_w; x++) {
-                unsigned int cr = GetColor(0, 0, 0);
                 DrawExtendGraph(x * square_size,y * square_size,(x + 1) * square_size,(y + 1) * square_size, mc.getMapchip()[33], TRUE);
                 switch (field[y][x])
                 {
                 case 1:
-                    cr = GetColor(255, 255, 255);
                     DrawExtendGraph(x  * square_size, y * square_size, (x + 1) * square_size, (y + 1) * square_size, mc.getMapchip()[81], TRUE);
                     break;
                 case 0:
-                    cr = GetColor(0, 0, 0);
                     break;
                 default:
                     break;

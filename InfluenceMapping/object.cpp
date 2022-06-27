@@ -1,4 +1,4 @@
-#include "object.h"
+﻿#include "object.h"
 
 namespace influenceMapping {
 	void Object::setCoord(const Vec2 new_coord) {
@@ -7,7 +7,7 @@ namespace influenceMapping {
 	Vec2 Object::getCoord()const {
 		return coord;
 	}
-	void objectAdd(const std::vector<std::vector<int>>& field, std::vector<Object>& object, const std::vector<Agent>& agent) {
+	void objectAdd(const field_matrix& field, std::vector<Object>& object, const std::vector<Agent>& agent) {
 		std::random_device rd;
 		std::default_random_engine eng(rd());
 		std::uniform_int_distribution<int> w_distr(1, window_square_w - 2);

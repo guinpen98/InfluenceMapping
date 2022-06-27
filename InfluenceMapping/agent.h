@@ -1,4 +1,4 @@
-#ifndef INFLUENCE_MAPPING_AGENT_H
+﻿#ifndef INFLUENCE_MAPPING_AGENT_H
 #define INFLUENCE_MAPPING_AGENT_H
 #include"character.h"
 namespace influenceMapping {
@@ -19,8 +19,8 @@ namespace influenceMapping {
 		void setNumber(const int new_num);
 		int getNumber()const;
 		void walk();
-		void pathSearch(const std::vector<std::vector<int>>& field, const std::vector<std::vector<double>>& influence_map);
-		void behavior(const std::vector<std::vector<int>>& field,const std::vector<std::vector<double>>& influence_map, std::vector<Agent>& agent);
+		void pathSearch(const field_matrix& field, const influence_matrix& influence_map);
+		void behavior(const field_matrix& field,const influence_matrix& influence_map, std::vector<Agent>& agent);
 		bool isSameCoord(const std::vector<Agent>& agent, const Vec2 next_coord);
 		bool isReturn(const CharacterDirection new_direction);
 	};

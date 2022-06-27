@@ -3,11 +3,34 @@
 namespace influenceMapping {
     bool update() { return (DxLib::ScreenFlip() != -1 && DxLib::ClearDrawScreen() != -1 && DxLib::ProcessMessage() != -1); }
 
+<<<<<<< HEAD
     
 
     void main(Mapchip& mc, Player& player, std::vector<Agent>& agent) {
         //地形の二次元配列
         std::vector<std::vector<int>> field(window_square_h, std::vector<int>(window_square_w));
+=======
+    void readMapFile(field_matrix& field) {
+        ifstream ifs("influence_mapping.csv");
+        string str;
+        int i = 0;
+        while (getline(ifs, str))
+        {
+            string token;
+            istringstream stream(str);
+            //1行のうち、文字列とコンマを分解する
+            while (getline(stream, token, ','))
+            {
+                field[i / window_square_w][i % window_square_w] = stoi(token.c_str());
+                i++;
+            }
+        }
+    }
+
+    void main(Mapchip& mc, Player& player, std::vector<Agent>& agent) {
+        //地形の二次元配列
+        field_matrix field(window_square_h, vector<int>(window_square_w));
+>>>>>>> f457fe5d24c9f7c07aa75d9adae9955cf46615d0
         //地形ファイルの読み込み
         readMapFile(field);
         //Objectの配列
@@ -33,7 +56,11 @@ namespace influenceMapping {
             }
             if (player.getState() == PlayerState::walkE) player.walk();
 
+<<<<<<< HEAD
             std::vector<std::vector<double>> influence_map(window_square_h, std::vector<double>(window_square_w,0.0));
+=======
+            influence_matrix influence_map(window_square_h, influence_array(window_square_w,0.0));
+>>>>>>> f457fe5d24c9f7c07aa75d9adae9955cf46615d0
             calculatingInfluence(field, influence_map, object, player.getNextCoord(),agent);
             for (int i = 0; i < agent_num; i++) {
                 if (agent[i].getState() == AgentState::agentStopE) agent[i].behavior(field, influence_map,agent);
