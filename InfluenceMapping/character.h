@@ -1,11 +1,9 @@
 ﻿#ifndef INFLUENCE_MAPPING_CHARACTER_H
 #define INFLUENCE_MAPPING_CHARACTER_H
 #include "vector.h"
-#include "property.h"
-#include <vector>
 
 namespace influenceMapping {
-	enum CharacterDirection :int {
+	enum class CharacterDirection :int {
 		directionDownE
 		, directionUpE
 		, directionRightE
@@ -25,7 +23,7 @@ namespace influenceMapping {
 		Vec2 interim_coord = Vec2(1.0, 1.0);
 		Vec2 next_coord = Vec2(1.0, 1.0);
 		int walk_cnt = 0;
-		CharacterDirection direction = directionDownE;
+		CharacterDirection direction = CharacterDirection::directionDownE;
 		std::vector<int> character_chip;
 	public:
 		void setCharacterchip(std::vector<int>& c_chip);
@@ -40,7 +38,7 @@ namespace influenceMapping {
 		void resetCoord(const Vec2 c_coord, const Vec2 i_coord, const Vec2 n_coord);
 		void setWalkCnt(const int new_cnt);
 		int getWalkCnt()const;
-		void setDirection(const enum CharacterDirection new_direction);
+		void setDirection(const CharacterDirection new_direction);
 		CharacterDirection getDirection()const;
 	};
 }

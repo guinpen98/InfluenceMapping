@@ -2,7 +2,7 @@
 #define INFLUENCE_MAPPING_AGENT_H
 #include"character.h"
 namespace influenceMapping {
-	enum AgentState {
+	enum class AgentState {
 		agentStopE
 		, agentWalkE
 	};
@@ -10,7 +10,7 @@ namespace influenceMapping {
 	class Agent : public Character
 	{
 	private:
-		AgentState state = agentStopE;
+		AgentState state = AgentState::agentStopE;
 		int stop_count = 0;
 		int number = 0;
 	public:
