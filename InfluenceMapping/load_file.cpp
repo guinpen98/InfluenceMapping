@@ -1,4 +1,6 @@
 #include "load_file.h"
+#include <fstream>
+#include <sstream>
 
 namespace influenceMapping {
     void readMapFile(field_matrix& field) {

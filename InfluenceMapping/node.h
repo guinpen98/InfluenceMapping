@@ -1,8 +1,6 @@
 ﻿#ifndef INFLUENCE_MAPPING_NODE_H
 #define INFLUENCE_MAPPING_NODE_H
-#include<vector>
 #include"object.h"
-#include"configuration.h"
 namespace influenceMapping {
 	constexpr double displacement_influence = 0.1;
 

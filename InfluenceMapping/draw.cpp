@@ -1,4 +1,8 @@
 ﻿#include "draw.h"
+#include "property.h"
+#include"mapchip.h"
+#include"player.h"
+#include<DxLib.h>
 
 namespace influenceMapping {
     void drawMap(field_matrix& field, Mapchip& mc) {
@@ -36,14 +40,14 @@ namespace influenceMapping {
         int graph_num = 0;
         switch (player.getDirection())
         {
-        case directionUpE:
+        case CharacterDirection::directionUpE:
             graph_num = 9;
             break;
             break;
-        case directionLeftE:
+        case CharacterDirection::directionLeftE:
             graph_num = 3;
             break;
-        case directionRightE:
+        case CharacterDirection::directionRightE:
             graph_num = 6;
             break;
         default:
@@ -61,14 +65,14 @@ namespace influenceMapping {
             int graph_num = 0;
             switch (agent[i].getDirection())
             {
-            case directionUpE:
+            case CharacterDirection::directionUpE:
                 graph_num = 9;
                 break;
                 break;
-            case directionLeftE:
+            case CharacterDirection::directionLeftE:
                 graph_num = 3;
                 break;
-            case directionRightE:
+            case CharacterDirection::directionRightE:
                 graph_num = 6;
                 break;
             default:

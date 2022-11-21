@@ -1,4 +1,5 @@
 ﻿#include "character.h"
+#include "property.h"
 
 namespace influenceMapping {
 	void Character::setCharacterchip(std::vector<int>& m_chip) {
@@ -45,7 +46,7 @@ namespace influenceMapping {
 	int Character::getWalkCnt()const {
 		return walk_cnt;
 	}
-	void Character::setDirection(const enum CharacterDirection new_direction) {
+	void Character::setDirection(const CharacterDirection new_direction) {
 		direction = new_direction;
 	}
 	CharacterDirection Character::getDirection()const {

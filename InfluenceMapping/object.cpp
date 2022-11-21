@@ -1,4 +1,5 @@
 ﻿#include "object.h"
+#include<random>
 
 namespace influenceMapping {
 	void Object::setCoord(const Vec2 new_coord) {

@@ -1,4 +1,8 @@
 ﻿#include "main.h"
+#include"node.h"
+#include"load_file.h"
+#include"draw.h"
+#include<DxLib.h>
 
 namespace influenceMapping {
     bool update() { return (DxLib::ScreenFlip() != -1 && DxLib::ClearDrawScreen() != -1 && DxLib::ProcessMessage() != -1); }
@@ -24,10 +28,10 @@ namespace influenceMapping {
             objectDelete(object,agent);
             if (player.getState() == PlayerState::stopE) {
                 GetHitKeyStateAll(key_state);
-                if (key_state[KEY_INPUT_A] || key_state[KEY_INPUT_LEFT]) player.inputProcess(directionLeftE, field);
-                else if (key_state[KEY_INPUT_D] || key_state[KEY_INPUT_RIGHT]) player.inputProcess(directionRightE, field);
-                else if (key_state[KEY_INPUT_W] || key_state[KEY_INPUT_UP]) player.inputProcess(directionUpE, field);
-                else if (key_state[KEY_INPUT_S] || key_state[KEY_INPUT_DOWN]) player.inputProcess(directionDownE, field);
+                if (key_state[KEY_INPUT_A] || key_state[KEY_INPUT_LEFT]) player.inputProcess(CharacterDirection::directionLeftE, field);
+                else if (key_state[KEY_INPUT_D] || key_state[KEY_INPUT_RIGHT]) player.inputProcess(CharacterDirection::directionRightE, field);
+                else if (key_state[KEY_INPUT_W] || key_state[KEY_INPUT_UP]) player.inputProcess(CharacterDirection::directionUpE, field);
+                else if (key_state[KEY_INPUT_S] || key_state[KEY_INPUT_DOWN]) player.inputProcess(CharacterDirection::directionDownE, field);
             }
             if (player.getState() == PlayerState::walkE) player.walk();
 

@@ -1,4 +1,6 @@
 ﻿#include "agent.h"
+#include "property.h"
+
 namespace influenceMapping {
 	void Agent::setState(const enum AgentState new_state) {
 		state = new_state;
@@ -15,16 +17,16 @@ namespace influenceMapping {
 	void Agent::walk() {
 		switch (getDirection())
 		{
-		case directionDownE:
+		case CharacterDirection::directionDownE:
 			setInterimCoord(down_coord / walk_fps);
 			break;
-		case directionUpE:
+		case CharacterDirection::directionUpE:
 			setInterimCoord(up_coord / walk_fps);
 			break;
-		case directionRightE:
+		case CharacterDirection::directionRightE:
 			setInterimCoord(right_coord / walk_fps);
 			break;
-		case directionLeftE:
+		case CharacterDirection::directionLeftE:
 			setInterimCoord(left_coord / walk_fps);
 			break;
 		default:
@@ -43,7 +45,7 @@ namespace influenceMapping {
 		double max_influence = -1;
 		Vec2 coord = getCurrentCoord();
 		Vec2 n_coord = Vec2(coord.x, coord.y - 1);
-		CharacterDirection new_direction = directionUpE;
+		CharacterDirection new_direction = CharacterDirection::directionUpE;
 		if (field[int(coord.y) - 1][int(coord.x)] == 0) {
 			if (influence_map[int(coord.y) - 1][int(coord.x)] > max_influence) {
 				max_influence = influence_map[int(coord.y) - 1][int(coord.x)];
@@ -51,13 +53,13 @@ namespace influenceMapping {
 		}
 		if (field[int(coord.y) + 1][int(coord.x)] == 0) {
 			if (influence_map[int(coord.y) + 1][int(coord.x)] > max_influence) {
-				new_direction = directionDownE;
+				new_direction = CharacterDirection::directionDownE;
 				max_influence = influence_map[int(coord.y) + 1][int(coord.x)];
 				n_coord = Vec2(coord.x,coord.y + 1);
 			}
 			else if (influence_map[int(coord.y) + 1][int(coord.x)] == max_influence)
 				if (isReturn(new_direction) || n_coord.centerDistance() > Vec2(coord.x, coord.y + 1).centerDistance()) {
-					new_direction = directionDownE;
+					new_direction = CharacterDirection::directionDownE;
 					max_influence = influence_map[int(coord.y) + 1][int(coord.x)];
 					n_coord = Vec2(coord.x, coord.y + 1);
 				}
@@ -65,25 +67,25 @@ namespace influenceMapping {
 
 		if (field[int(coord.y)][int(coord.x) - 1] == 0) {
 			if (influence_map[int(coord.y)][int(coord.x) - 1] > max_influence) {
-				new_direction = directionLeftE;
+				new_direction = CharacterDirection::directionLeftE;
 				max_influence = influence_map[int(coord.y)][int(coord.x) - 1];
 				n_coord = Vec2(coord.x - 1, coord.y);
 			}
 			else if (influence_map[int(coord.y)][int(coord.x) - 1] == max_influence)
 				if (isReturn(new_direction) || n_coord.centerDistance() > Vec2(coord.x - 1, coord.y).centerDistance()) {
-					new_direction = directionLeftE;
+					new_direction = CharacterDirection::directionLeftE;
 					max_influence = influence_map[int(coord.y)][int(coord.x) - 1];
 					n_coord = Vec2(coord.x - 1, coord.y);
 				}
 		}
 		if (field[int(coord.y)][int(coord.x) + 1] == 0) {
 			if (influence_map[int(coord.y)][int(coord.x) + 1] > max_influence) {
-				new_direction = directionRightE;
+				new_direction = CharacterDirection::directionRightE;
 				max_influence = influence_map[int(coord.y)][int(coord.x) + 1];
 			}
 			else if (influence_map[int(coord.y)][int(coord.x) + 1] == max_influence)
 				if (isReturn(new_direction) || n_coord.centerDistance() > Vec2(coord.x + 1, coord.y).centerDistance()) {
-					new_direction = directionRightE;
+					new_direction = CharacterDirection::directionRightE;
 					max_influence = influence_map[int(coord.y)][int(coord.x) + 1];
 				}
 		}
@@ -98,19 +100,19 @@ namespace influenceMapping {
 			int other_num = getNumber() == 0 ? 1 : 0;
 			switch (getDirection())
 			{
-			case directionDownE:
+			case CharacterDirection::directionDownE:
 				if (tmp_coord.y >= window_square_h) return;
 				next_coord = down_coord;
 				break;
-			case directionUpE:
+			case CharacterDirection::directionUpE:
 				if (tmp_coord.y <= 0.0) return;
 				next_coord = up_coord;
 				break;
-			case directionRightE:
+			case CharacterDirection::directionRightE:
 				if (tmp_coord.x >= window_square_w) return;
 				next_coord = right_coord;
 				break;
-			case directionLeftE:
+			case CharacterDirection::directionLeftE:
 				if (tmp_coord.x <= 0.0) return;
 				next_coord = left_coord;
 				break;
@@ -120,7 +122,7 @@ namespace influenceMapping {
 			if (field[int(tmp_coord.y)][int(tmp_coord.x)] == 1) return;
 			if (isSameCoord(agent, tmp_coord + next_coord)) return;
 			setNextCoord(next_coord);
-			setState(agentWalkE);
+			setState(AgentState::agentWalkE);
 			stop_count = 0;
 		}
 	}
@@ -134,7 +136,10 @@ namespace influenceMapping {
 	}
 	bool Agent::isReturn(const CharacterDirection n_d) {
 		CharacterDirection d = getDirection();
-		return ((d == directionUpE && n_d == directionDownE) || (d == directionDownE && n_d == directionUpE) || (d == directionRightE && n_d == directionLeftE) || (d == directionRightE && n_d == directionLeftE));
+		return ((d == CharacterDirection::directionUpE && n_d == CharacterDirection::directionDownE)
+			|| (d == CharacterDirection::directionDownE && n_d == CharacterDirection::directionUpE)
+			|| (d == CharacterDirection::directionRightE && n_d == CharacterDirection::directionLeftE)
+			|| (d == CharacterDirection::directionLeftE && n_d == CharacterDirection::directionRightE));
 	}
 
 }

@@ -1,4 +1,5 @@
-﻿#include"main.h"
+﻿#include "main.h"
+#include <DxLib.h>
 
 namespace influenceMapping {
     void loadChip(Mapchip& mc, Player& player, Agent& agent) {
@@ -15,7 +16,7 @@ namespace influenceMapping {
 }
 
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 {
     DxLib::SetOutApplicationLogValidFlag(FALSE);
     DxLib::ChangeWindowMode(TRUE);

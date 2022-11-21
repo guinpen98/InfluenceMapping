@@ -1,8 +1,6 @@
 ﻿#ifndef INFLUENCE_MAPPING_OBJECT_H
 #define INFLUENCE_MAPPING_OBJECT_H
-#include"vector.h"
 #include"agent.h"
-#include<random>
 namespace influenceMapping {
 	constexpr int obj_num = 5;
 	class Object {

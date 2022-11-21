@@ -1,6 +1,8 @@
 ﻿#include "player.h"
+#include "property.h"
+
 namespace influenceMapping {
-	void Player::setState(const enum PlayerState new_state) {
+	void Player::setState(const PlayerState new_state) {
 		state = new_state;
 	}
 	PlayerState Player::getState()const {
@@ -13,19 +15,19 @@ namespace influenceMapping {
 		Vec2 next_coord;
 		switch (direction)
 		{
-		case directionDownE:
+		case CharacterDirection::directionDownE:
 			if (tmp_coord.y >= window_square_h - 1) return;
 			next_coord = down_coord;
 			break;
-		case directionUpE:
+		case CharacterDirection::directionUpE:
 			if (tmp_coord.y <= 0.0) return;
 			next_coord = up_coord;
 			break;
-		case directionRightE:
+		case CharacterDirection::directionRightE:
 			if (tmp_coord.x >= window_square_w - 1) return;
 			next_coord = right_coord;
 			break;
-		case directionLeftE:
+		case CharacterDirection::directionLeftE:
 			if (tmp_coord.x <= 0.0) return;
 			next_coord = left_coord;
 			break;
@@ -39,16 +41,16 @@ namespace influenceMapping {
 	void Player::walk() {
 		switch (getDirection())
 		{
-		case directionDownE:
+		case CharacterDirection::directionDownE:
 			setInterimCoord(down_coord / walk_fps);
 			break;
-		case directionUpE:
+		case CharacterDirection::directionUpE:
 			setInterimCoord(up_coord / walk_fps);
 			break;
-		case directionRightE:
+		case CharacterDirection::directionRightE:
 			setInterimCoord(right_coord / walk_fps);
 			break;
-		case directionLeftE:
+		case CharacterDirection::directionLeftE:
 			setInterimCoord(left_coord / walk_fps);
 			break;
 		default:

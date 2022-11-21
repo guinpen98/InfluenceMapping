@@ -1,8 +1,5 @@
 #ifndef INFLUENCE_LOAD_FILE_H
 #define INFLUENCE_LOAD_FILE_H
-#include <fstream>
-#include <sstream>
-#include<vector>
 #include"configuration.h"
 
 namespace influenceMapping {
